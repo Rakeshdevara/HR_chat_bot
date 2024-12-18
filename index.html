@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR AI Assistant</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { text-align: center; }
+        .response { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HR AI Assistant</h1>
+        <form id="questionForm">
+            <label for="question">Ask a Question:</label><br>
+            <input type="text" id="question" name="question" placeholder="Type your question here" style="width: 100%; padding: 10px;" required>
+            <br><br>
+            <button type="submit" style="padding: 10px 20px;">Submit</button>
+        </form>
+        <div class="response" id="responseArea" style="display: none;">
+            <h2>Response:</h2>
+            <p id="responseText"></p>
+            <div id="tableContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        $("#questionForm").on("submit", function (e) {
+            e.preventDefault();
+            const question = $("#question").val();
+            $.ajax({
+                type: "POST",
+                url: "/ask",
+                data: { question: question },
+                success: function (data) {
+                    $("#responseText").text(data.response);
+                    $("#tableContainer").html(data.tables);
+                    $("#responseArea").show();
+                },
+                error: function () {
+                    alert("Error processing your request.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
