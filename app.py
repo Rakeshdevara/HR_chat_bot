@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from IPython.display import display, HTML
 import ipywidgets as widgets
@@ -117,6 +117,10 @@ index = load_index_from_storage(storage_context)
 # Flask app setup
 app = Flask(__name__)
 CORS(app)  # Allow cross-origin requests for the frontend
+# Flask route for the homepage
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 @app.route('/ask', methods=['POST'])
 def ask_question():
