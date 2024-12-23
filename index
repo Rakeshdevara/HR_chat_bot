@@ -1,1 +1,2 @@
 pip install flask llama-index llama-index-llms-groq groq llama-index-embeddings-huggingface ipywidgets neo4j langchain-experimental pyngrok
+pip install flask-cors
