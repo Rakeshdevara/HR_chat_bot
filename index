@@ -1,2 +1,0 @@
-pip install graphviz flask llama-index llama-index-llms-groq groq llama-index-embeddings-huggingface ipywidgets neo4j langchain-experimental pyngrok flask-cors spacy
-python -m spacy download en_core_web_sm
